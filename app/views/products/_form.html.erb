@@ -45,7 +45,7 @@
   </div>
   <div class="field">
     <%= f.label :category_id %><br>
-    <%= f.text_field :category_id %>
+    <%= f.collection_select :category_id, Category.all, :id, :category_name %>
   </div>
   <div class="actions">
     <%= f.submit %>

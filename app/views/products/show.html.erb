@@ -36,13 +36,8 @@
 </p>
 
 <p>
-  <strong>Supplier:</strong>
-  <%= @product.supplier %>
-</p>
-
-<p>
   <strong>Category:</strong>
-  <%= @product.category %>
+  <%= link_to @product.category.category_name, category_path(@product.category) %>
 </p>
 
 <%= link_to 'Edit', edit_product_path(@product) %> |

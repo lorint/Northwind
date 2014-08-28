@@ -5,8 +5,8 @@ class CreateEmployees < ActiveRecord::Migration
       t.string :last_name
       t.string :title
       t.string :title_of_courtesy
-      t.string :birth_date
-      t.string :hire_date
+      t.date :birth_date
+      t.date :hire_date
       t.string :address
       t.string :city
       t.string :region
