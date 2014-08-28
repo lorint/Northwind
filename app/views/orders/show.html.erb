@@ -77,7 +77,7 @@
         <td><%= order_detail.unit_price %></td>
         <td><%= order_detail.quantity %></td>
         <td><%= order_detail.discount %></td>
-        <td><%= order_detail.product.product_name %></td>
+        <td><%= link_to order_detail.product.product_name, order_detail.product %></td>
         <td><%= link_to 'Edit', edit_order_detail_path(order_detail) %></td>
       </tr>
     <% end %>
