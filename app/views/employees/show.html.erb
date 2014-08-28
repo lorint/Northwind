@@ -1,0 +1,74 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>First name:</strong>
+  <%= @employee.first_name %>
+</p>
+
+<p>
+  <strong>Last name:</strong>
+  <%= @employee.last_name %>
+</p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @employee.title %>
+</p>
+
+<p>
+  <strong>Title of courtesy:</strong>
+  <%= @employee.title_of_courtesy %>
+</p>
+
+<p>
+  <strong>Birth date:</strong>
+  <%= @employee.birth_date %>
+</p>
+
+<p>
+  <strong>Hire date:</strong>
+  <%= @employee.hire_date %>
+</p>
+
+<p>
+  <strong>Address:</strong>
+  <%= @employee.address %>
+</p>
+
+<p>
+  <strong>City:</strong>
+  <%= @employee.city %>
+</p>
+
+<p>
+  <strong>Region:</strong>
+  <%= @employee.region %>
+</p>
+
+<p>
+  <strong>Postal code:</strong>
+  <%= @employee.postal_code %>
+</p>
+
+<p>
+  <strong>Country:</strong>
+  <%= @employee.country %>
+</p>
+
+<p>
+  <strong>Home phone:</strong>
+  <%= @employee.home_phone %>
+</p>
+
+<p>
+  <strong>Extension:</strong>
+  <%= @employee.extension %>
+</p>
+
+<p>
+  <strong>Notes:</strong>
+  <%= @employee.notes %>
+</p>
+
+<%= link_to 'Edit', edit_employee_path(@employee) %> |
+<%= link_to 'Back', employees_path %>
