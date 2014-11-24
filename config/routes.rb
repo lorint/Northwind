@@ -1,4 +1,12 @@
 Rails.application.routes.draw do
+  get 'reports/customers_and_products'
+
+  get 'reports/customers_and_categories'
+
+  get 'reports/employee_sales_per_quarter'
+
+  get 'reports/most_popular_products_per_category'
+
   resources :customers
   resources :categories
   resources :employees

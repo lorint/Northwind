@@ -21,3 +21,4 @@
 
 en:
   hello: "Hello world"
+  business: "xyz business"
