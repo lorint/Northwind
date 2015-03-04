@@ -1,0 +1,32 @@
+<% last_person = nil
+ month_num = 0 %>
+<table>
+	<tr>
+		<td></td>
+		<td>Jan</td><td>Feb</td><td>Mar</td>
+		<td>Apr</td><td>May</td><td>Jun</td>
+		<td>Jul</td><td>Aug</td><td>Sep</td>
+		<td>Oct</td><td>Nov</td><td>Dec</td>
+	<% @sales.each do |s| %>
+		<% if last_person != s.first_name %>
+			</tr>
+			<tr><td><%= s.first_name %>
+			<% last_person = s.first_name
+				month_num = 0 %>
+		<% end %>
+		<% while month_num != nil && month_num < s.month
+			month_num += 1 %>
+			</td><td>
+		<% end %>
+		<% if s.total_sales < 3000 %>
+			<span style="color: red">
+		<% end %>
+		<%= s.total_sales %>
+		<% if s.total_sales < 3000 %>
+			</span>
+		<% end %>
+
+	<% end %>
+	</td>
+	</tr>
+</table>

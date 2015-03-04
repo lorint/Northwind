@@ -7,6 +7,8 @@ Rails.application.routes.draw do
 
   get 'reports/most_popular_products_per_category'
 
+  get 'reports/employee_sales_per_month'
+
   resources :customers
   resources :categories
   resources :employees

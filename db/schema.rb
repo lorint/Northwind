@@ -11,10 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141104015920) do
+ActiveRecord::Schema.define(version: 20150225192448) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "airports", force: true do |t|
+    t.string   "code"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "categories", force: true do |t|
     t.string   "category_name"
@@ -60,6 +66,20 @@ ActiveRecord::Schema.define(version: 20141104015920) do
   end
 
   add_index "employees", ["reports_to_id"], name: "index_employees_on_reports_to_id", using: :btree
+
+  create_table "flights", force: true do |t|
+    t.integer  "departure_id"
+    t.integer  "arrival_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "friend_requests", force: true do |t|
+    t.integer  "friender_id"
+    t.integer  "friendee_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "order_details", force: true do |t|
     t.decimal  "unit_price"
@@ -113,11 +133,6 @@ ActiveRecord::Schema.define(version: 20141104015920) do
 
   add_index "products", ["category_id"], name: "index_products_on_category_id", using: :btree
   add_index "products", ["supplier_id"], name: "index_products_on_supplier_id", using: :btree
-
-  create_table "test", id: false, force: true do |t|
-    t.decimal "ya"
-    t.decimal "na"
-  end
 
   create_table "users", force: true do |t|
     t.string   "email"
