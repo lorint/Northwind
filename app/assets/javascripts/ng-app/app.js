@@ -1,47 +1,59 @@
-var myHttp;
+var myResource;
 
-angular.module("NorthwindApp", [])
+angular.module("NorthwindApp", ['ngResource'])
 	// Let's chain on a factory
-	.factory('categoryFactory', ['$http', function($http) {
-		return {
-			getCategories: function() {
-				myHttp = $http;
-				return $http.get("/categories.json");
-			},
-			deleteCategory: function(id) {
-				return $http.delete("/categories/" + id + ".json");
-			},
-			saveCategory: function(name, description){
-				return $http.post("/categories", {
-					category_name: name,
-					description: description
-				})
-			}
-		};
+	.factory('categoryFactory', ['$resource', function($resource) {
+		myResource = $resource;
+		return $resource('/categories/:id.json');
+
+		// Here's how we USED to be doing our factory -- with $http
+
+		// return {
+		// 	getCategories: function() {
+		// 		
+		// 		return $http.get("/categories.json");
+		// 	},
+		// 	deleteCategory: function(id) {
+		// 		return $http.delete("/categories/" + id + ".json");
+		// 	},
+		// 	saveCategory: function(name, description){
+		// 		return $http.post("/categories", {
+		// 			category_name: name,
+		// 			description: description
+		// 		})
+		// 	}
+		// };
 	}])
 	// And chain on a controller
 	.controller('CategoriesCtrl', ['$scope', 'categoryFactory', 
     function($scope, categoryFactory) {
-    	// Go get all the categories
-    	categoryFactory.getCategories()
-    		.success(function(data, status) {
+    	// Go get all the categories, now using a $resource object
+    	var listCategories = function(){
+	    	categoryFactory.query(function(data) {
 			    $scope.categories = data;
 			});
-    	// Delete one category by its ID
+	    };
+    	// Delete one category by its ID, also now using $resource
     	$scope.deleteCategory = function(id){
-    		categoryFactory.deleteCategory(id)
-    			.success(function(data){
-    				alert("OK -- it's deleted :)");
-    			})
+    		categoryFactory.delete({id: id},
+    			function(data){	// What to do on success
+    				listCategories();
+				}
+			);
     	};
-
     	// This name -- createCategory -- MUST correspond to what's in the view!
     	$scope.createCategory = function(name, desc) {
-    		// This name (obvi) MUST correspond to the name in the factory
-    		categoryFactory.saveCategory(name, desc)
-    			.success(function(data){
-    				alert("OK -- you made a new one");
-    			})
+    		var cat = new categoryFactory({category_name: name, description: desc});
+    		cat.$save(
+    			function(data){	// What to do on success
+    				$scope.newCatName = "";
+    				$scope.newCatDescrip = "";
+	    			listCategories();
+    			}
+    		);
     	};
+
+    	// Before we render the page, we show all the categories
+    	listCategories();
     }]);
 

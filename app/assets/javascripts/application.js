@@ -14,4 +14,6 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require angular
+//= require angular-resource
+// THIS is where it loads in app.js (and other stuff)
 //= require_tree .

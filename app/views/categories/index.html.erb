@@ -15,15 +15,13 @@
     <tr x-ng-repeat="cat in categories track by $index">
       <td>{{ cat.category_name }}</td>
       <td>{{ cat.description }}</td>
-      <td><a href="#" x-ng-click="deleteCategory(cat.id)">Destroy</a></td>
+      <td><a href="" x-ng-click="deleteCategory(cat.id);">Destroy</a></td>
     </tr>
   </tbody>
 </table>
 
 <br>
 
-<%= link_to 'New Category', new_category_path %>
-<br />
 <%= link_to 'Customers', customers_path %><br />
 <%= link_to 'Employees', employees_path %><br />
 <%= link_to 'Products', products_path %><br />
