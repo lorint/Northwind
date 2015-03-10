@@ -5,6 +5,8 @@ class ApplicationController < ActionController::Base
 
   before_action :set_locale
 
+  skip_before_filter :verify_authenticity_token
+
 private
   def set_locale
   	if params[:hl]

@@ -1,5 +1,7 @@
 <h1>Listing categories</h1>
 
+<div x-ng-app="NorthwindApp" x-ng-controller="CategoriesCtrl">
+
 <table>
   <thead>
     <tr>
@@ -9,18 +11,12 @@
       <th colspan="3"></th>
     </tr>
   </thead>
-
   <tbody>
-    <% @categories.each do |category| %>
-      <tr>
-        <td><%= category.category_name %></td>
-        <td><%= category.description %></td>
-        <td><%= category.products.count %></td>
-        <td><%= link_to 'Show', category %></td>
-        <td><%= link_to 'Edit', edit_category_path(category) %></td>
-        <td><%= link_to 'Destroy', category, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
+    <tr x-ng-repeat="cat in categories track by $index">
+      <td>{{ cat.category_name }}</td>
+      <td>{{ cat.description }}</td>
+      <td><a href="#" x-ng-click="deleteCategory(cat.id)">Destroy</a></td>
+    </tr>
   </tbody>
 </table>
 
@@ -31,3 +27,10 @@
 <%= link_to 'Customers', customers_path %><br />
 <%= link_to 'Employees', employees_path %><br />
 <%= link_to 'Products', products_path %><br />
+
+<hr />
+<input type="text" x-ng-model="newCatName" /><br />
+<textarea x-ng-model="newCatDescrip"></textarea><br />
+<input type="button" value="Add Category" x-ng-click="createCategory(newCatName, newCatDescrip)" />
+
+</div>
